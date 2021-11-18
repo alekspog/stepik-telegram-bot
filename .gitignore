@@ -1,0 +1,11 @@
+.cache
+__pycache__
+
+# Environment variables
+.env 
+
+# Telegram bot session
+bot.session
+
+# Virtual environment
+venv
