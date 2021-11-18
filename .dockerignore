@@ -1,0 +1,16 @@
+Dockerfile
+.dockerignore
+.git/
+
+# Python
+**/__pycache__/
+**/*.py[ocd]
+.python-version
+.pytest_cache/
+.venv/
+venv/
+.env/
+
+# Editors and stuff
+.vscode/
+.idea/
