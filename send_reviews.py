@@ -28,11 +28,11 @@ stepik_client = Stepik(client_id=client_id, client_secret=client_secret)
 
 # The first parameter is the .session file name (absolute paths allowed)
 with bot:
-    course_reviews_obj = stepik_client.fetch_object_with_params('course-review', 'course=575')
+    course_reviews_obj = stepik_client.fetch_object_with_params('course-review', f'course={COURSE_ID}')
     for review in course_reviews_obj:
         create_date = parser.parse(review['create_date'], ignoretz=True)
         review_age = datetime.now() - create_date
-        if review_age < timedelta(days=DAYS_IN_THE_PAST):
+        if review_age < timedelta(days=DAYS_IN_THE_PAST, minutes=5):
             user = stepik_client.fetch_object('user', review['user'])
             user_fullname = user["full_name"]
             user_profile = f'{api_host}/users/{user["id"]}'
@@ -52,5 +52,5 @@ with bot:
 {score}
 
 {review_link}
-            """
+"""
             bot.loop.run_until_complete(bot.send_message(int(channel_id), result))
